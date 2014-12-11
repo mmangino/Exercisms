@@ -29,10 +29,7 @@ module.exports = {
         return "She swallowed the "+animals[i]+" to catch the "+animals[i-1]
       }
 
-      if (first_verse || last_verse){
-        return base
-
-      } else {
+      var populate_middle = function(){
         for (var i=1; i < verse; i++) {
           if (i == 2){
             middle_lines.unshift(base_line(i) + verse2_addition())
@@ -41,7 +38,14 @@ module.exports = {
             middle_lines.unshift(base_line(i) +".\n")
           }
         }
-         return base + middle() + ending
+      }
+
+      if (first_verse || last_verse){
+        return base
+
+      } else {
+        populate_middle();
+        return base + middle() + ending
        }
     },
 
